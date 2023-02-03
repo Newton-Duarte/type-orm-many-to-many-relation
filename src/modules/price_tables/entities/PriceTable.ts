@@ -10,7 +10,7 @@ export class PriceTable {
   @Column()
   name!: string;
 
-  @ManyToMany(() => PriceTableProduct, (priceTableProduct) => priceTableProduct.price_table, { cascade: true })
+  @ManyToMany(() => PriceTableProduct, (priceTableProduct) => priceTableProduct.price_table, { cascade: true, eager: true })
   @JoinTable({
     name: 'price_table_products',
     joinColumns: [{ name: 'price_table_id' }],
