@@ -10,19 +10,21 @@ export class ProductsRepository {
   }
 
   async find(): Promise<Product[]> {
-    return this.productsRepository.find();
+    return this.productsRepository.find({ relations: ['units'] });
   }
 
   async findById(id: string): Promise<Product> {
     return this.productsRepository.findOne({ where: { id } });
   }
 
-  async create({ id, name, price, unit_id, created_at }: ICreateProductDTO): Promise<Product> {
+  async create({ id, name, price, unit_id, units, created_at }: ICreateProductDTO): Promise<Product> {
+    console.log(units);
     const Product = this.productsRepository.create({
       id,
       name,
       price,
       unit_id,
+      units: units || [],
       created_at: created_at || new Date(),
       updated_at: new Date(),
     });

@@ -1,7 +1,8 @@
 import { ColumnNumericTransformer } from "../../../shared/database/transformers/ColumnNumericTransformer";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from 'uuid';
 import { PriceTableProduct } from "@modules/price_tables/entities/PriceTableProduct";
+import { Unit } from "@modules/units/entities/Unit";
 
 @Entity('products')
 export class Product {
@@ -17,6 +18,14 @@ export class Product {
     transformer: new ColumnNumericTransformer(),
   })
   price!: number;
+
+  @ManyToMany(() => Unit, { cascade: true })
+  @JoinTable({
+    name: 'product_units',
+    joinColumns: [{ name: 'product_id'}],
+    inverseJoinColumns: [{ name: 'unit_id'}]
+  })
+  units!: Unit[];
   
   @Column()
   unit_id!: string;

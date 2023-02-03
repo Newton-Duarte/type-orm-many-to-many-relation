@@ -30,10 +30,10 @@ productsRoutes.post('/', async (req: Request, res: Response) => {
 
 productsRoutes.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { name, price, unit_id } = req.body;
+  const { name, price, unit_id, units } = req.body;
   const productsRepository = new ProductsRepository();
 
-  const product = await productsRepository.create({ id, name, price, unit_id });
+  const product = await productsRepository.create({ id, name, price, unit_id, units });
 
   return res.json(product);
 })
