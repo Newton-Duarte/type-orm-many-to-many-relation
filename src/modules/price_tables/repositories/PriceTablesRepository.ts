@@ -18,7 +18,6 @@ export class PriceTablesRepository {
   }
 
   async create({ id, name, products, created_at }: ICreatePriceTableDTO): Promise<PriceTable> {
-    console.log(products);
     const priceTable = this.priceTablesRepository.create({
       id,
       name,
