@@ -1,22 +1,19 @@
 import { Product } from '@modules/products/entities/Product';
 import { Unit } from '@modules/units/entities/Unit';
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
 import { ColumnNumericTransformer } from '../../../shared/database/transformers/ColumnNumericTransformer';
 import { PriceTable } from './PriceTable';
 
 @Entity('price_table_products')
 export class PriceTableProduct {
-  @PrimaryGeneratedColumn()
-  id!: number;
-
-  @Column()
+  @PrimaryColumn()
   price_table_id!: string;
 
-  @Column()
+  @PrimaryColumn()
   product_id!: string;
 
-  @Column()
+  @PrimaryColumn()
   product_unit_id!: string;
 
   @Column('numeric', {
