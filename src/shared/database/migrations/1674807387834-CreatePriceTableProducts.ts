@@ -10,17 +10,15 @@ export class CreatePriceTableProducts1674807387834 implements MigrationInterface
             {
               name: 'price_table_id',
               type: 'uuid',
-              isPrimary: true,
+              isNullable: true,
             },
             {
               name: 'product_id',
               type: 'uuid',
-              isPrimary: true,
             },
             {
               name: 'product_unit_id',
               type: 'uuid',
-              isPrimary: true,
             },
             {
               name: 'product_price',
