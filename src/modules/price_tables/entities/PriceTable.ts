@@ -10,7 +10,11 @@ export class PriceTable {
   @Column()
   name!: string;
 
-  @OneToMany(() => PriceTableProduct, (priceTableProduct) => priceTableProduct.price_table, { cascade: true, eager: true })
+  @OneToMany(
+    () => PriceTableProduct, 
+    (priceTableProduct) => priceTableProduct.price_table, 
+    { cascade: true, eager: true }
+  )
   price_table_products!: PriceTableProduct[];
 
   @CreateDateColumn()
