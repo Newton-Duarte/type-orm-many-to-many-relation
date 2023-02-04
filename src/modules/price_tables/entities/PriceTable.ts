@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { PriceTableProduct } from "./PriceTableProduct";
 import { v4 as uuidV4 } from 'uuid';
 
@@ -10,12 +10,7 @@ export class PriceTable {
   @Column()
   name!: string;
 
-  @ManyToMany(() => PriceTableProduct, (priceTableProduct) => priceTableProduct.price_table, { cascade: true, eager: true })
-  @JoinTable({
-    name: 'price_table_products',
-    joinColumns: [{ name: 'price_table_id' }],
-    inverseJoinColumns: [{ name: 'id' }],
-  })
+  @OneToMany(() => PriceTableProduct, (priceTableProduct) => priceTableProduct.price_table, { cascade: true, eager: true })
   price_table_products!: PriceTableProduct[];
 
   @CreateDateColumn()
